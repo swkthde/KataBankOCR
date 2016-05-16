@@ -31,7 +31,11 @@ public class AccountNumberParserTest {
 
         File testFile = getTestFile("multiple-accounts.txt");
         List<String> accountNumbers = AccountNumberParser.getAccountNumbers(testFile);
-        
+        for (int i = 0; i <= 9; i++) {
+            assertEquals("Could not parse account number",
+                    new String(new char[9]).replace("\0", Integer.toString(i)),
+                    accountNumbers.get(i));
+        }
         assertEquals("Could not parse all account numbers", 10, accountNumbers.size());              
     }
     

@@ -13,19 +13,16 @@ import java.util.List;
 public class AccountNumberParser {
 
     private static final int NUMBER_OF_DIGIT_COLS = 3;
-    private static final int NUMBER_DIGIT_ROWS = 3;
+    private static final int NUMBER_OF_DIGIT_ROWS = 3;
     private static final int NUMBER_OF_DIGITS = 9;
 
     public static List<String> getAccountNumbers(File sourceFile) throws IOException {
         
-        List<String> accountNumbers = new LinkedList<String>();
+        List<String> accountNumbers = new LinkedList<>();
         String[] fileContents = readLines(sourceFile);
         
-        for (int lineIndex = 0; lineIndex < fileContents.length; lineIndex += 4) {
-            String[] accountEntry = new String[3];
-            accountEntry[0] = fileContents[lineIndex];
-            accountEntry[1] = fileContents[lineIndex + 1];
-            accountEntry[2] = fileContents[lineIndex + 2];
+        for (int lineIndex = 0; lineIndex < fileContents.length; lineIndex += NUMBER_OF_DIGIT_ROWS + 1) {
+            String[] accountEntry = Arrays.copyOfRange(fileContents, lineIndex, lineIndex + NUMBER_OF_DIGIT_ROWS);
             accountNumbers.add(parseEntry(accountEntry));
         }
         
@@ -34,10 +31,10 @@ public class AccountNumberParser {
     
     private static String[] readLines(File file) throws IOException {
         
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> lines = new ArrayList<>();
         
         try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {            
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);
             }
@@ -51,12 +48,12 @@ public class AccountNumberParser {
         StringBuilder sb = new StringBuilder();
         
         for (int digitIndex = 0; digitIndex < NUMBER_OF_DIGITS; digitIndex++) {
-            String[] digitRows = new String[NUMBER_DIGIT_ROWS];
-            
+            String[] digitRows = new String[NUMBER_OF_DIGIT_ROWS];
+
             int substringStartIndex = digitIndex * NUMBER_OF_DIGIT_COLS;
-            digitRows[0] = accountEntry[0].substring(substringStartIndex, substringStartIndex + 3);
-            digitRows[1] = accountEntry[1].substring(substringStartIndex, substringStartIndex + 3);
-            digitRows[2] = accountEntry[2].substring(substringStartIndex, substringStartIndex + 3);                
+            for (int i = 0; i < NUMBER_OF_DIGIT_ROWS; i++) {
+                digitRows[i] = accountEntry[i].substring(substringStartIndex, substringStartIndex + NUMBER_OF_DIGIT_COLS);
+            }
             
             sb.append(parseDigit(digitRows));
         }

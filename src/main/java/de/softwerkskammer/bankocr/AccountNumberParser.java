@@ -1,9 +1,24 @@
 package de.softwerkskammer.bankocr;
 
+import java.util.Arrays;
 
 public class AccountNumberParser {
-    
+
     protected static char parseDigit(char[][] digit) {
-        return ' ';
+
+        if (Arrays.deepEquals(digit, Digits.ZERO)) {
+            return '0';
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static class Digits {
+
+        final static char[][] ZERO = new char[][] {
+                {' ','_',' '},
+                {'|',' ','|'},
+                {'|','_','|'}
+        };
     }
 }

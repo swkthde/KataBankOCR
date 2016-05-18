@@ -27,4 +27,16 @@ public class AccountNumberParserTest {
         char digit = AccountNumberParser.parseDigit(testDigit);
         assertEquals("Cannot parse digit", '0', digit);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testParseDigit_failure() {
+
+        char[][] testDigit = new char[][] {
+            {' ','_',' '},
+            {'|','?','|'},
+            {'|','_','|'},
+        };
+
+        AccountNumberParser.parseDigit(testDigit);
+    }
 }

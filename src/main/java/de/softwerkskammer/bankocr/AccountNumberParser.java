@@ -9,7 +9,7 @@ public class AccountNumberParser {
         if (Arrays.deepEquals(digit, Digits.ZERO)) {
             return '0';
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Cannot parse digit " + Arrays.deepToString(digit));
         }
     }
 

@@ -1,6 +1,9 @@
 package de.softwerkskammer.bankocr;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class AccountNumbersParser {
@@ -8,6 +11,13 @@ public class AccountNumbersParser {
     private static final int NUMBER_OF_DIGIT_COLS = 3;
     private static final int NUMBER_OF_DIGIT_ROWS = 3;
     private static final int NUMBER_OF_DIGITS = 9;
+
+    public static List<String> getAccountNumbers(File accountNumbersFile) {
+
+        List<String> accountNumbers = new ArrayList<>();
+
+        return accountNumbers;
+    }
 
     protected static String parseAccountNumber(char[][] accountNumber) {
 

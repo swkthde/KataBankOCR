@@ -45,9 +45,9 @@ public class AccountNumberParser {
             int digitStartIndex = digitIndex * NUMBER_OF_DIGIT_COLS;
             int digitEndIndex = digitStartIndex + NUMBER_OF_DIGIT_COLS;
 
-            digit[0] = Arrays.copyOfRange(accountNumber[0], digitStartIndex, digitEndIndex);
-            digit[1] = Arrays.copyOfRange(accountNumber[1], digitStartIndex, digitEndIndex);
-            digit[2] = Arrays.copyOfRange(accountNumber[2], digitStartIndex, digitEndIndex);
+            for (int rowIndex = 0; rowIndex < NUMBER_OF_DIGIT_ROWS; rowIndex++) {
+                digit[rowIndex] = Arrays.copyOfRange(accountNumber[rowIndex], digitStartIndex, digitEndIndex);
+            }
 
             sb.append(parseDigit(digit));
         }

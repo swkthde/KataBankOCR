@@ -8,6 +8,26 @@ public class AccountNumberParser {
     private static final int NUMBER_OF_DIGIT_ROWS = 3;
     private static final int NUMBER_OF_DIGITS = 9;
 
+    public static String parseAccountNumber(char[][] accountNumber) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int digitIndex = 0; digitIndex < NUMBER_OF_DIGITS; digitIndex++) {
+            char[][] digit = new char[NUMBER_OF_DIGIT_ROWS][NUMBER_OF_DIGIT_COLS];
+
+            int digitStartIndex = digitIndex * NUMBER_OF_DIGIT_COLS;
+            int digitEndIndex = digitStartIndex + NUMBER_OF_DIGIT_COLS;
+
+            for (int rowIndex = 0; rowIndex < NUMBER_OF_DIGIT_ROWS; rowIndex++) {
+                digit[rowIndex] = Arrays.copyOfRange(accountNumber[rowIndex], digitStartIndex, digitEndIndex);
+            }
+
+            sb.append(parseDigit(digit));
+        }
+
+        return sb.toString();
+    }
+
     protected static char parseDigit(char[][] digit) {
 
         if (Arrays.deepEquals(digit, Digits.ZERO)) {
@@ -34,87 +54,68 @@ public class AccountNumberParser {
             throw new IllegalArgumentException("Cannot parse digit " + Arrays.deepToString(digit));
         }
     }
+}
 
-    public static String parseAccountNumber(char[][] accountNumber) {
 
-        StringBuilder sb = new StringBuilder();
+class Digits {
 
-        for (int digitIndex = 0; digitIndex < NUMBER_OF_DIGITS; digitIndex++) {
-            char[][] digit = new char[NUMBER_OF_DIGIT_ROWS][NUMBER_OF_DIGIT_COLS];
-
-            int digitStartIndex = digitIndex * NUMBER_OF_DIGIT_COLS;
-            int digitEndIndex = digitStartIndex + NUMBER_OF_DIGIT_COLS;
-
-            for (int rowIndex = 0; rowIndex < NUMBER_OF_DIGIT_ROWS; rowIndex++) {
-                digit[rowIndex] = Arrays.copyOfRange(accountNumber[rowIndex], digitStartIndex, digitEndIndex);
-            }
-
-            sb.append(parseDigit(digit));
-        }
-
-        return sb.toString();
-    }
-
-    private static class Digits {
-
-        final static char[][] ZERO = new char[][] {
-                {' ','_',' '},
-                {'|',' ','|'},
-                {'|','_','|'}
-        };
-
-        final static char[][] ONE = new char[][] {
-            {' ',' ',' '},
-            {' ',' ','|'},
-            {' ',' ','|'},
-        };
-
-        final static char[][] TWO = new char[][] {
+    final static char[][] ZERO = new char[][] {
             {' ','_',' '},
-            {' ','_','|'},
-            {' ','|','_'},
-        };
+            {'|',' ','|'},
+            {'|','_','|'}
+    };
 
-        final static char[][] THREE = new char[][] {
-            {' ','_',' '},
-            {' ','_','|'},
-            {' ','_','|'},
-        };
+    final static char[][] ONE = new char[][] {
+        {' ',' ',' '},
+        {' ',' ','|'},
+        {' ',' ','|'},
+    };
 
-        final static char[][] FOUR = new char[][] {
-            {' ',' ',' '},
-            {'|','_','|'},
-            {' ',' ','|'},
-        };
+    final static char[][] TWO = new char[][] {
+        {' ','_',' '},
+        {' ','_','|'},
+        {' ','|','_'},
+    };
 
-        final static char[][] FIVE = new char[][] {
-            {' ','_',' '},
-            {'|','_',' '},
-            {' ','_','|'},
-        };
+    final static char[][] THREE = new char[][] {
+        {' ','_',' '},
+        {' ','_','|'},
+        {' ','_','|'},
+    };
 
-        final static char[][] SIX = new char[][] {
-            {' ','_',' '},
-            {'|','_',' '},
-            {'|','_','|'},
-        };
+    final static char[][] FOUR = new char[][] {
+        {' ',' ',' '},
+        {'|','_','|'},
+        {' ',' ','|'},
+    };
 
-        final static char[][] SEVEN = new char[][] {
-            {' ','_',' '},
-            {' ',' ','|'},
-            {' ',' ','|'},
-        };
+    final static char[][] FIVE = new char[][] {
+        {' ','_',' '},
+        {'|','_',' '},
+        {' ','_','|'},
+    };
 
-        final static char[][] EIGHT = new char[][] {
-            {' ','_',' '},
-            {'|','_','|'},
-            {'|','_','|'},
-        };
+    final static char[][] SIX = new char[][] {
+        {' ','_',' '},
+        {'|','_',' '},
+        {'|','_','|'},
+    };
 
-        final static char[][] NINE = new char[][] {
-            {' ','_',' '},
-            {'|','_','|'},
-            {' ','_','|'},
-        };
-    }
+    final static char[][] SEVEN = new char[][] {
+        {' ','_',' '},
+        {' ',' ','|'},
+        {' ',' ','|'},
+    };
+
+    final static char[][] EIGHT = new char[][] {
+        {' ','_',' '},
+        {'|','_','|'},
+        {'|','_','|'},
+    };
+
+    final static char[][] NINE = new char[][] {
+        {' ','_',' '},
+        {'|','_','|'},
+        {' ','_','|'},
+    };
 }

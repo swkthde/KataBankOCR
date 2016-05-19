@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 public class AccountNumberParser {
 
+    private static final int NUMBER_OF_DIGIT_COLS = 3;
+    private static final int NUMBER_OF_DIGIT_ROWS = 3;
+    private static final int NUMBER_OF_DIGITS = 9;
+
     protected static char parseDigit(char[][] digit) {
 
         if (Arrays.deepEquals(digit, Digits.ZERO)) {
@@ -29,6 +33,13 @@ public class AccountNumberParser {
         } else {
             throw new IllegalArgumentException("Cannot parse digit " + Arrays.deepToString(digit));
         }
+    }
+
+    public static String parseAccountNumber(char[][] accountNumber) {
+
+        StringBuilder sb = new StringBuilder();
+
+        return sb.toString();
     }
 
     private static class Digits {

@@ -19,14 +19,10 @@ public class AccountNumbersParser {
         List<String> accountNumbers = new ArrayList<>();
         List<String> content = Files.readAllLines(accountNumbersFile.toPath());
 
-        for (int lineIndex = 0; lineIndex < content.size(); lineIndex += 4) {
-
-            System.out.println("lineIndex: " + lineIndex);
-
+        for (int lineIndex = 0; lineIndex < content.size(); lineIndex += NUMBER_OF_DIGIT_ROWS + 1) {
             char[][] accountEntry = new char[NUMBER_OF_DIGIT_ROWS][NUMBER_OF_DIGIT_COLS];
-            accountEntry[0] = content.get(lineIndex).toCharArray();
-            accountEntry[1] = content.get(lineIndex + 1).toCharArray();
-            accountEntry[2] = content.get(lineIndex + 2).toCharArray();
+            for (int rowIndex = 0; rowIndex < NUMBER_OF_DIGIT_ROWS; rowIndex++)
+                accountEntry[rowIndex] = content.get(rowIndex).toCharArray();
             accountNumbers.add(parseAccountNumber(accountEntry));
         }
 

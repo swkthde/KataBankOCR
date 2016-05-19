@@ -3,6 +3,7 @@ package de.softwerkskammer.bankocr;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import org.junit.Test;
 public class AccountNumbersParserTest {
 
     @Test
-    public void testGetAccountNumbers() {
+    public void testGetAccountNumbers() throws IOException {
 
         File testFile = getTestFile("account-numbers.txt");
         List<String> accountNumbers = AccountNumbersParser.getAccountNumbers(testFile);
@@ -73,7 +74,7 @@ public class AccountNumbersParserTest {
         char[][] testDigit2 = new char[][] {
             {' ','_',' '},
             {' ','_','|'},
-            {' ','|','_'},
+            {'|','_',' '},
         };
 
         char[][] testDigit3 = new char[][] {

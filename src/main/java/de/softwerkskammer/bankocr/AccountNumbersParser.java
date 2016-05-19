@@ -1,6 +1,8 @@
 package de.softwerkskammer.bankocr;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,9 +14,21 @@ public class AccountNumbersParser {
     private static final int NUMBER_OF_DIGIT_ROWS = 3;
     private static final int NUMBER_OF_DIGITS = 9;
 
-    public static List<String> getAccountNumbers(File accountNumbersFile) {
+    public static List<String> getAccountNumbers(File accountNumbersFile) throws IOException {
 
         List<String> accountNumbers = new ArrayList<>();
+        List<String> content = Files.readAllLines(accountNumbersFile.toPath());
+
+        for (int lineIndex = 0; lineIndex < content.size(); lineIndex += 4) {
+
+            System.out.println("lineIndex: " + lineIndex);
+
+            char[][] accountEntry = new char[NUMBER_OF_DIGIT_ROWS][NUMBER_OF_DIGIT_COLS];
+            accountEntry[0] = content.get(lineIndex).toCharArray();
+            accountEntry[1] = content.get(lineIndex + 1).toCharArray();
+            accountEntry[2] = content.get(lineIndex + 2).toCharArray();
+            accountNumbers.add(parseAccountNumber(accountEntry));
+        }
 
         return accountNumbers;
     }
@@ -85,7 +99,7 @@ class Digits {
     final static char[][] TWO = new char[][] {
         {' ','_',' '},
         {' ','_','|'},
-        {' ','|','_'},
+        {'|','_',' '},
     };
 
     final static char[][] THREE = new char[][] {

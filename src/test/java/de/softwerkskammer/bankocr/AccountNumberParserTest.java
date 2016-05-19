@@ -20,6 +20,7 @@ public class AccountNumberParserTest {
         };
 
         String accountNumber = AccountNumberParser.parseAccountNumber(testAccountNumber);
+        assertEquals("Cannot parse account number", "000000000", accountNumber);
     }
 
     @Test

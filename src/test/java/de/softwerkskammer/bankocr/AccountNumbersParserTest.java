@@ -1,7 +1,6 @@
 package de.softwerkskammer.bankocr;
 
 import static org.junit.Assert.assertEquals;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -14,7 +13,15 @@ import org.junit.Test;
 public class AccountNumbersParserTest {
 
     @Test
-    public void testGetAccountNumbers() throws IOException {
+    public void testGetAccountNumbers_IndividualNumbers() throws IOException {
+
+        File testFile = getTestFile("account-number-123456789.txt");
+        List<String> accountNumbers = AccountNumbersParser.getAccountNumbers(testFile);
+        assertEquals("Cannot parse account number", "123456789", accountNumbers.get(0));
+    }
+
+    @Test
+    public void testGetAccountNumbers_NumberSet() throws IOException {
 
         File testFile = getTestFile("account-numbers.txt");
         List<String> accountNumbers = AccountNumbersParser.getAccountNumbers(testFile);

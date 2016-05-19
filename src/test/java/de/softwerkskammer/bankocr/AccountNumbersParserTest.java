@@ -17,6 +17,7 @@ public class AccountNumbersParserTest {
 
         File testFile = getTestFile("account-numbers.txt");
         List<String> accountNumbers = AccountNumbersParser.getAccountNumbers(testFile);
+        assertEquals("Cannot parse all account numbers", 12, accountNumbers.size());
     }
 
     private File getTestFile(String fileName) {

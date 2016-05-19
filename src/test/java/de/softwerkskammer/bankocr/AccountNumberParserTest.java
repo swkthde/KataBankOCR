@@ -13,9 +13,13 @@ public class AccountNumberParserTest {
     @Test
     public void testParseAccountNumber() {
 
-        // Each entry is 4 lines long
-        // each line 27 characters
-        // each account number 9 digits
+        char [][] testAccountNumber = {
+                {' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ', '_',' ', ' ','_',' '},
+                {'|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|', ' ','|', '|',' ','|'},
+                {' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ', '_',' ', ' ','_',' '}
+        };
+
+        String accountNumber = AccountNumberParser.parseAccountNumber(testAccountNumber);
     }
 
     @Test

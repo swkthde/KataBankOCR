@@ -2,6 +2,8 @@ package de.softwerkskammer.bankocr;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,19 @@ import org.junit.Test;
 
 
 public class AccountNumbersParserTest {
+
+    @Test
+    public void testGetAccountNumbers() {
+
+        File testFile = getTestFile("account-numbers.txt");
+        List<String> accountNumbers = AccountNumbersParser.getAccountNumbers(testFile);
+    }
+
+    private File getTestFile(String fileName) {
+
+        URL testFileUrl = ClassLoader.getSystemResource(fileName);
+        return new File(testFileUrl.getPath());
+    }
 
     @Test
     public void testParseAccountNumber() {

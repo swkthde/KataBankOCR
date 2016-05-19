@@ -39,6 +39,19 @@ public class AccountNumberParser {
 
         StringBuilder sb = new StringBuilder();
 
+        for (int digitIndex = 0; digitIndex < NUMBER_OF_DIGITS; digitIndex++) {
+            char[][] digit = new char[NUMBER_OF_DIGIT_ROWS][NUMBER_OF_DIGIT_COLS];
+
+            int digitStartIndex = digitIndex * NUMBER_OF_DIGIT_COLS;
+            int digitEndIndex = digitStartIndex + NUMBER_OF_DIGIT_COLS;
+
+            digit[0] = Arrays.copyOfRange(accountNumber[0], digitStartIndex, digitEndIndex);
+            digit[1] = Arrays.copyOfRange(accountNumber[1], digitStartIndex, digitEndIndex);
+            digit[2] = Arrays.copyOfRange(accountNumber[2], digitStartIndex, digitEndIndex);
+
+            sb.append(parseDigit(digit));
+        }
+
         return sb.toString();
     }
 

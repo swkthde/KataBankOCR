@@ -2,13 +2,14 @@ package de.softwerkskammer.bankocr;
 
 import java.util.Arrays;
 
-public class AccountNumberParser {
+
+public class AccountNumbersParser {
 
     private static final int NUMBER_OF_DIGIT_COLS = 3;
     private static final int NUMBER_OF_DIGIT_ROWS = 3;
     private static final int NUMBER_OF_DIGITS = 9;
 
-    public static String parseAccountNumber(char[][] accountNumber) {
+    protected static String parseAccountNumber(char[][] accountNumber) {
 
         StringBuilder sb = new StringBuilder();
 

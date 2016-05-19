@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 
-public class AccountNumberParserTest {
+public class AccountNumbersParserTest {
 
     @Test
     public void testParseAccountNumber() {
@@ -19,7 +19,7 @@ public class AccountNumberParserTest {
                 {'|','_','|', '|','_','|', '|','_','|', '|','_','|', '|','_','|', '|','_','|', '|','_','|', '|', '_','|', '|','_','|'}
         };
 
-        String accountNumber = AccountNumberParser.parseAccountNumber(testAccountNumber);
+        String accountNumber = AccountNumbersParser.parseAccountNumber(testAccountNumber);
         assertEquals("Cannot parse account number", "000000000", accountNumber);
     }
 
@@ -28,16 +28,16 @@ public class AccountNumberParserTest {
 
         List<char[][]> testDigits = getTestDigits();
 
-        assertEquals("Cannot parse digit", '0', AccountNumberParser.parseDigit(testDigits.get(0)));
-        assertEquals("Cannot parse digit", '1', AccountNumberParser.parseDigit(testDigits.get(1)));
-        assertEquals("Cannot parse digit", '2', AccountNumberParser.parseDigit(testDigits.get(2)));
-        assertEquals("Cannot parse digit", '3', AccountNumberParser.parseDigit(testDigits.get(3)));
-        assertEquals("Cannot parse digit", '4', AccountNumberParser.parseDigit(testDigits.get(4)));
-        assertEquals("Cannot parse digit", '5', AccountNumberParser.parseDigit(testDigits.get(5)));
-        assertEquals("Cannot parse digit", '6', AccountNumberParser.parseDigit(testDigits.get(6)));
-        assertEquals("Cannot parse digit", '7', AccountNumberParser.parseDigit(testDigits.get(7)));
-        assertEquals("Cannot parse digit", '8', AccountNumberParser.parseDigit(testDigits.get(8)));
-        assertEquals("Cannot parse digit", '9', AccountNumberParser.parseDigit(testDigits.get(9)));
+        assertEquals("Cannot parse digit", '0', AccountNumbersParser.parseDigit(testDigits.get(0)));
+        assertEquals("Cannot parse digit", '1', AccountNumbersParser.parseDigit(testDigits.get(1)));
+        assertEquals("Cannot parse digit", '2', AccountNumbersParser.parseDigit(testDigits.get(2)));
+        assertEquals("Cannot parse digit", '3', AccountNumbersParser.parseDigit(testDigits.get(3)));
+        assertEquals("Cannot parse digit", '4', AccountNumbersParser.parseDigit(testDigits.get(4)));
+        assertEquals("Cannot parse digit", '5', AccountNumbersParser.parseDigit(testDigits.get(5)));
+        assertEquals("Cannot parse digit", '6', AccountNumbersParser.parseDigit(testDigits.get(6)));
+        assertEquals("Cannot parse digit", '7', AccountNumbersParser.parseDigit(testDigits.get(7)));
+        assertEquals("Cannot parse digit", '8', AccountNumbersParser.parseDigit(testDigits.get(8)));
+        assertEquals("Cannot parse digit", '9', AccountNumbersParser.parseDigit(testDigits.get(9)));
     }
 
     private List<char[][]> getTestDigits() {
@@ -126,6 +126,6 @@ public class AccountNumberParserTest {
             {'|','_','|'},
         };
 
-        AccountNumberParser.parseDigit(testDigit);
+        AccountNumbersParser.parseDigit(testDigit);
     }
 }
